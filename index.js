@@ -52,3 +52,13 @@ invokeAction(argv);
 //   type: 'any.required',
 //   context: { label: 'fileName', key: 'fileName' }
 // }
+
+
+// $ node index --action create --fileName text.txt --content qwerty
+// checkExtension >>> txt true
+// { extension: 'txt', resultBool: true }
+
+
+// $ node index --action create --fileName text.doc --content qwerty
+// checkExtension >>> doc false
+// { extension: 'doc', resultBool: false }

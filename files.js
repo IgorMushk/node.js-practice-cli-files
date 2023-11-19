@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs/promises");
-const validateData = require('./helpers/validateData')
+const validateData = require('./helpers/validateData');
+const checkExtension = require("./helpers/checkExtension");
 
 async function createFile(fileName, content) {
     const file ={
@@ -15,6 +16,14 @@ async function createFile(fileName, content) {
         console.log(`Please specify ${paramError} parameter`);
         return;
     }
+    
+    //console.log(checkExtension (fileName));
+    const checkFile =  checkExtension(fileName);
+    //console.log(checkFile);
+    if (!checkFile.result) {
+        console.log(`Sorry this app doesn't support files with ${checkFile.extension} extension`)
+        return
+    };
 
 }
 
