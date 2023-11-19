@@ -25,6 +25,13 @@ async function createFile(fileName, content) {
         return
     };
 
+    const filePath = path.join(__dirname,'./files',fileName);
+    try {
+        await fs.writeFile(filePath, content, "utf-8")
+        console.log(`File was created successful`)
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 module.exports = {
