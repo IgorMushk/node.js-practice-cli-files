@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 function validateData(data) {
     const schema = Joi.object({
-        fileNAme: Joi.string().required(),
+        fileName: Joi.string().required(),
         content: Joi.string().required(),
     })
 
