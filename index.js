@@ -1,5 +1,5 @@
 const argv = require('yargs').argv;
-const { createFile, getFiles} = require("./files")
+const { createFile, getFiles, getFileInfo} = require("./files")
 
 function invokeAction({ action, fileName, content }) {
   switch (action) {
@@ -11,8 +11,8 @@ function invokeAction({ action, fileName, content }) {
         getFiles();
       break;
 
-    case '':
-
+    case 'getInfo':
+        getFileInfo(fileName);
       break;
 
     default:
@@ -68,3 +68,18 @@ invokeAction(argv);
 // text2.txt
 // text3.txt
 // text4.txt
+
+
+// $ node index --action getInfo --fileName text2.txt
+// Sorry file with name text2.txt not found
+
+// $ node index --action getInfo --fileName text.txt
+// qwerty
+
+// $ node index --action getInfo --fileName text.txt
+// {
+//   content: 'qwerty',
+//   name: 'text',
+//   extension: '.txt',
+//   createAt: 2023-11-19T22:44:37.353Z
+// }

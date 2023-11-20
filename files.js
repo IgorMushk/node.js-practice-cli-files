@@ -48,7 +48,27 @@ async function getFiles() {
     });
 }
 
+async function getFileInfo(fileName) {
+    const data = await fs.readdir(folderPath);
+    //const found = data.find(name => name === fileName);
+    if (!data.includes(fileName)) {
+        console.log(`Sorry there is no file ${fileName} in this folder`);
+        return;
+    }
+    const filePath = path.join(__dirname,'./files', fileName);
+    const result = await fs.readFile(filePath, "utf-8");
+    //console.log(result);
+    //console.log(path.parse(fileName).ext)
+    //console.log(path.parse(fileName).name)
+    const extension = path.extname(fileName);
+    const name = path.basename(fileName,extension);
+    const fileDateAt = await fs.stat(filePath);
+    //console.log(fileDateAt.birthtime);
+     console.log({content :result, name, extension, createAt: fileDateAt.birthtime});
+}
+
 module.exports = {
     createFile,
     getFiles,
+    getFileInfo,  
 } 
