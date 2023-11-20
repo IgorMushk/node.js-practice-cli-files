@@ -3,6 +3,8 @@ const fs = require("fs/promises");
 const validateData = require('./helpers/validateData');
 const checkExtension = require("./helpers/checkExtension");
 
+const folderPath = path.join(__dirname, './files');
+
 async function createFile(fileName, content) {
     const file ={
         fileName,
@@ -34,6 +36,19 @@ async function createFile(fileName, content) {
     }
 }
 
+async function getFiles() {
+    const data = await fs.readdir(folderPath);
+    //console.log(data);
+    if (!data) {
+        console.log('Sorry there are no files in this folder');
+        return;
+    }
+    data.forEach(file => {
+        console.log(file);
+    });
+}
+
 module.exports = {
     createFile,
+    getFiles,
 } 
