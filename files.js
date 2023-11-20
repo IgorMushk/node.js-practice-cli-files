@@ -39,7 +39,7 @@ async function createFile(fileName, content) {
 async function getFiles() {
     const data = await fs.readdir(folderPath);
     //console.log(data);
-    if (!data) {
+    if (!data.length) {
         console.log('Sorry there are no files in this folder');
         return;
     }
